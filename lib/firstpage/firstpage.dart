@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/firstpage/Animations/FadeAnimation.dart';
-import 'package:page_transition/page_transition.dart';
+//import 'package:page_transition/page_transition.dart';
 import 'package:project/loginPage/login.dart';
 
 class FirstPage extends StatefulWidget {
@@ -76,7 +76,8 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
         Tween<double>(begin: 1.0, end: 32.0).animate(_scale2Controller)
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
-              Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: LoginPage()));
+             // Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: LoginPage()));
+              Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {return LoginPage();}));
             }
           });
   }
@@ -113,7 +114,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                   FadeAnimation(
                     1.3,
                     Text(
-                      "We promis that you'll have the most \nfuss-free time with us ever.",
+                      "snkaksnaddkasjcjsa dckm sc sdkc kasadbcksabdkcbsadbcsabckksabvkbvkbvkbvksbvkbvkbk.",
                       style: TextStyle(
                           color: Colors.black.withOpacity(.7),
                           height: 1.4,

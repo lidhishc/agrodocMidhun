@@ -5,7 +5,10 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(),
+      body: Container(
+        height: 2000.0,
+        child: Text("Login page")
+      ),
     );
   }
 }
