@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/firstpage/Animations/FadeAnimation.dart';
-//import 'package:page_transition/page_transition.dart';
-import 'package:project/loginPage/login.dart';
+//import 'package:page_transition/page_transition.dart';  
+import 'package:project/loginPage/auth.dart';
+import 'package:project/loginPage/rootPage.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -77,7 +78,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
              // Navigator.push(context, PageTransition(type: PageTransitionType.fade, child: LoginPage()));
-              Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {return LoginPage();}));
+              Navigator.of(context).pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {return RootPage(auth: Auth());}));
             }
           });
   }
