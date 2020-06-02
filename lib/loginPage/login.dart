@@ -13,6 +13,7 @@ class LoginPage extends StatefulWidget {
 enum FormType { login, register }
 
 class _LoginPageState extends State<LoginPage> {
+  String _name;
   String _email;
   String _password;
   FormType _formType = FormType.login;
@@ -294,6 +295,8 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.grey),
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.green))),
+          validator: (value) => value.isEmpty ? 'This is empty' : null,
+          onSaved: (value) => _name = value,
         ),
       ];
     } else {
