@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/loginPage/homePage.dart';
+//import 'package:project/loginPage/homePage.dart';
+import 'package:project/plantlising/plantlis.dart';
 import 'auth.dart';
 import 'package:project/loginPage/login.dart';
 
@@ -46,7 +47,7 @@ class _RootPageState extends State<RootPage> {
         return LoginPage(auth: widget.auth, onSignedIn: _signedIn);
         break;
       case AuthStatus.signedIn:
-        return HomePage(
+        return Plant(
           auth: widget.auth,
           onSignedOut: _signedOut,
         );

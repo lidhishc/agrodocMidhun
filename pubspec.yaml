@@ -31,6 +31,11 @@ dev_dependencies:
   page_transition: ^1.1.4
   firebase_auth: ^0.15.5+3
   connectivity: ^0.3.2
+  image_picker:
+  http: ^0.12.0+4
+  mime: ^0.9.6+3
+  toast: ^0.1.5
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -46,6 +51,22 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - assets/images/
+   - images/images.jpeg
+   - images/back.jpg
+   - images/nice.jpg
+   - images/good.jpg
+   - images/unnamed.jpg
+   - images/beetroot.jpeg
+   - images/bitterguard.jpeg
+   - images/carrot.jpeg
+   - images/cauliflower.jpeg
+   - images/chilli.jpeg
+   - images/garlic.jpeg
+   - images/ladiefinger.jpeg
+   - images/potato.jpeg
+   - images/pumpkin.jpeg
+   - images/rice.jpeg
+   - images/tomato.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

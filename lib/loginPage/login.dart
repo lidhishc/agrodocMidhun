@@ -310,29 +310,6 @@ class _LoginPageState extends State<LoginPage> {
       return [];
     }
   }
-
-  //for checking interconnectivity
-  // _checkInternetConnectivity() async{
-  //   var result = await Connectivity().checkConnectivity();
-  //   if(result == ConnectivityResult.none) {
-  //     _showDialog(
-  //       'No Internet',
-  //       "You're not connected to network"
-  //       );
-
-  //   } else if (result == ConnectivityResult.mobile){
-  //     _showDialog(
-  //       'Internet access',
-  //       "You're connected over mobile data"
-  //       );
-  //   } else if (result == ConnectivityResult.wifi) {
-  //      _showDialog(
-  //       'Internet access',
-  //       "You're connected over wifi"
-  //       );
-  //   }
-  // }
-
   //for showing dialog box
   _showDialog(title, text){
     showDialog(
