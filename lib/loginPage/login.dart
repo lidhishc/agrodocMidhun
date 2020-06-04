@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/loginPage/auth.dart';
+import 'package:connectivity/connectivity.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({this.auth, this.onSignedIn});
@@ -13,7 +14,7 @@ class LoginPage extends StatefulWidget {
 enum FormType { login, register }
 
 class _LoginPageState extends State<LoginPage> {
-  String _name;
+  String name;
   String _email;
   String _password;
   FormType _formType = FormType.login;
@@ -26,16 +27,22 @@ class _LoginPageState extends State<LoginPage> {
     final form = formkey.currentState;
     if(form.validate()) {
       form.save();
-      print('Form is valid $_email and $_password');
+      print('Form is valid $_email and $_password and $name');
       return true;
     } else {
-      print('form is invalid $_email and $_password');
       return false;
     }
   }
 
   void validateAndSubmit() async {
-    if(validateAndSave()) {
+    var result = await Connectivity().checkConnectivity();
+    if(result == ConnectivityResult.none) {
+      _showDialog(
+        'No Internet',
+        "You're not connected to network"
+        );
+
+    } else if(validateAndSave()) {
       try {
         if (_formType == FormType.login) {
         // AuthResult result = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
@@ -296,12 +303,56 @@ class _LoginPageState extends State<LoginPage> {
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.green))),
           validator: (value) => value.isEmpty ? 'This is empty' : null,
-          onSaved: (value) => _name = value,
+          onSaved: (value) => name = value,
         ),
       ];
     } else {
       return [];
     }
+  }
+
+  //for checking interconnectivity
+  // _checkInternetConnectivity() async{
+  //   var result = await Connectivity().checkConnectivity();
+  //   if(result == ConnectivityResult.none) {
+  //     _showDialog(
+  //       'No Internet',
+  //       "You're not connected to network"
+  //       );
+
+  //   } else if (result == ConnectivityResult.mobile){
+  //     _showDialog(
+  //       'Internet access',
+  //       "You're connected over mobile data"
+  //       );
+  //   } else if (result == ConnectivityResult.wifi) {
+  //      _showDialog(
+  //       'Internet access',
+  //       "You're connected over wifi"
+  //       );
+  //   }
+  // }
+
+  //for showing dialog box
+  _showDialog(title, text){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(text),
+          actions: <Widget>[
+            FlatButton(
+               child: Text('OK'),
+               onPressed: () {
+                 Navigator.of(context).pop();
+               },
+               )
+          ],
+        );
+      }
+    );
+
   }
 }
 

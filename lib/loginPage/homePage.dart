@@ -6,7 +6,7 @@ class HomePage extends StatelessWidget {
   HomePage({this.auth, this.onSignedOut});
   final BaseAuth auth;           // necessary for signout
   final VoidCallback onSignedOut; //for informing rootpage that the app is signout
-
+  
   void _signOut() async {  
     try {
       await auth.signOut();     // signout function from auth.dart
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
         body: Container(
           child: Center(
             child: Text(
-              'Welcome',
+              'Welcome user',
               style: TextStyle(fontSize: 32.0),
             ),
           ),

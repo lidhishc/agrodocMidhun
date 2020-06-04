@@ -115,7 +115,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                   FadeAnimation(
                     1.3,
                     Text(
-                      "snkaksnaddkasjcjsa dckm sc sdkc kasadbcksabdkcbsadbcsabckksabvkbvkbvkbvksbvkbvkbk.",
+                      "We Will Solve your problem",
                       style: TextStyle(
                           color: Colors.black.withOpacity(.7),
                           height: 1.4,
