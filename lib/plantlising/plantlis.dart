@@ -32,51 +32,54 @@ class Plant extends StatelessWidget {
         backgroundColor: Colors.green[600],
       ),
       drawer: Drawer(
-          //navigation drawer
-          child: Column(
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(color: Colors.green[600]),
-          ),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text("Help"),
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Help()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.phone),
-            title: Text("Contact Us"),
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Contact()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.people),
-            title: Text("Developers"),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Developer()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.history),
-            title: Text("History"),
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => History()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.stop),
-            title: Text("Logout"),
-            onTap: _signOut,
-          ),
-        ],
-      )),
+        //navigation drawer
+        child: Column(
+          children: <Widget>[
+            DrawerHeader(
+              child: Container(
+              ),
+              decoration: BoxDecoration(color: Colors.green[600],),
+            ),
+            ListTile(
+              leading: Icon(Icons.help),
+              title: Text("Help"),
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Help()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.phone),
+              title: Text("Contact Us"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Contact()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.people),
+              title: Text("Developers"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Developer()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.history),
+              title: Text("History"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => History()));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.stop),
+              title: Text("Logout"),
+              onTap: _signOut,
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.fromLTRB(8.0, 140.0, 8.0, 8.0),
@@ -147,7 +150,7 @@ class Plant extends StatelessWidget {
             //for pepper
             SizedBox(height: 40.0),
             Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 0.0, 0),
+              padding: EdgeInsets.fromLTRB(10, 0, 0.0, 0),
               height: 40.0,
               child: Material(
                 borderRadius: BorderRadius.circular(20.0),
