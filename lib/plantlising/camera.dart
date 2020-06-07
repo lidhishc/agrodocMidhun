@@ -4,7 +4,8 @@ import 'dart:io'; // for using file
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:async/async.dart';
-//import 'dart:convert'; // for converting to json
+import 'dart:convert'; // for converting to json
+import 'package:connectivity/connectivity.dart';
 
 class Camera extends StatefulWidget {
   Camera({this.plantName});
@@ -16,6 +17,7 @@ class Camera extends StatefulWidget {
 class _CameraState extends State<Camera> {
   File _image;
   String resp = '';
+  var userName = 'lidhishc@flutter.com';
 
   // for capturing image from camera
   Future getImageFromCam() async {
@@ -38,6 +40,7 @@ class _CameraState extends State<Camera> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Camera'),
+        backgroundColor: Colors.green[600],
       ),
       body: ListView(
         children: <Widget>[
@@ -60,12 +63,14 @@ class _CameraState extends State<Camera> {
                     onPressed: getImageFromCam,
                     tooltip: 'Pick Image1',
                     child: Icon(Icons.add_a_photo),
+                    backgroundColor: Colors.green[600],
                   ),
                   FloatingActionButton(
                     heroTag: null,
                     onPressed: getImageFromGallery,
                     tooltip: 'Pick Image2',
                     child: Icon(Icons.wallpaper),
+                    backgroundColor: Colors.green[600],
                   ),
                   FloatingActionButton(
                     heroTag: null,
@@ -76,46 +81,113 @@ class _CameraState extends State<Camera> {
                     },
                     tooltip: 'Pick Image3',
                     child: Icon(Icons.delete),
+                    backgroundColor: Colors.green[600],
                   ),
                   RaisedButton(
-                    color: Colors.blueAccent,
-                    onPressed: () {
-                      uploadImageToServer(_image);
+                    color: Colors.green[600],
+                    onPressed: () async {
+                      if (_image != null) {
+                        var result = await Connectivity().checkConnectivity();
+                        if (result == ConnectivityResult.none) {
+                          _showDialog(
+                              'No Internet', "You're not connected to network");
+                        } else {
+                          uploadImageToServer(_image, userName);
+                        }
+                      } else {
+                        _showDialog(
+                            'No Image', "You need to select/capture a image");
+                      }
                     },
-                    child: Text("Upload"),
+                    child: Text(
+                      "Upload",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   )
                 ],
               ),
+              Padding(
+                padding: const EdgeInsets.all(35.0),
+                child: Container(
+                  child: Text("Result"),
+                ),
+              ),
             ],
           ),
-          Container(
-            child: Text(resp),
-          ),
-          Container(
-            child: Text("${widget.plantName}"), // this will give which plant is selected
-          )
         ],
       ),
     );
   }
 
-  void uploadImageToServer(File imageFile) async {
+  //for showing dialog box
+  _showDialog(title, text) {
+    showDialog(
+        context: this.context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(title),
+            content: Text(text),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  void uploadImageToServer(File imageFile, var usename) async {
     print("attempting to connect to server……");
     var stream =
         new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     var length = await imageFile.length();
     print(length);
-    var uri = Uri.parse('http://eae0b048.ngrok.io/predict');
+    var uri;
+    if (widget.plantName == "tomato") {
+      uri = Uri.parse('http://73103e7c0313.ngrok.io/predicts');
+    } else if (widget.plantName == "potato") {
+      uri = Uri.parse('http://b9a7f529499d.ngrok.io/predicts');
+    } else if (widget.plantName == "pepper") {
+      uri = Uri.parse('http://b9a7f529499d.ngrok.io/predicts');
+    }
+    //var uri = Uri.parse('http://b9a7f529499d.ngrok.io/predicts');
     print("connection established.");
     var request = new http.MultipartRequest("POST", uri);
     var multipartFile = new http.MultipartFile('file', stream, length,
         filename: basename(
             imageFile.path)); //contentType: new MediaType(‘image’, ‘png’));
     request.files.add(multipartFile);
+    request.fields['username'] = userName;
     print(multipartFile);
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
-    this.resp = response.body.toString();
-    print(response.body);
+    var resu = JsonDecoder().convert("$response");
+    this.resp = resu['solution'];
+    print(response.body.toString());
   }
+
+  // void uploadImageToServer(File imageFile) async {
+  //   print("attempting to connect to server……");
+  //   var stream =
+  //       new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+  //   var length = await imageFile.length();
+  //   print(length);
+  //   var uri = Uri.parse('http://eae0b048.ngrok.io/predict');
+  //   print("connection established.");
+  //   var request = new http.MultipartRequest("POST", uri);
+  //   var multipartFile = new http.MultipartFile('file', stream, length,
+  //       filename: basename(
+  //           imageFile.path)); //contentType: new MediaType(‘image’, ‘png’));
+  //   request.files.add(multipartFile);
+  //   print(multipartFile);
+  //   var streamedResponse = await request.send();
+  //   var response = await http.Response.fromStream(streamedResponse);
+  //   this.resp = response.body.toString();
+  //   print(response.body);
+  // }
 }

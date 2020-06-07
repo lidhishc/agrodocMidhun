@@ -13,7 +13,7 @@ class _PotatoPageState extends State<Potato> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: Colors.green[600],
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -82,7 +82,7 @@ class _PotatoPageState extends State<Potato> {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -107,7 +107,7 @@ class _PotatoPageState extends State<Potato> {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -123,7 +123,7 @@ class _PotatoPageState extends State<Potato> {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -141,7 +141,7 @@ class _PotatoPageState extends State<Potato> {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -159,7 +159,7 @@ class _PotatoPageState extends State<Potato> {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),

@@ -7,7 +7,7 @@ class Tomato extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: Colors.green[600],
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -76,7 +76,7 @@ class Tomato extends StatelessWidget {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -101,7 +101,7 @@ class Tomato extends StatelessWidget {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -117,7 +117,7 @@ class Tomato extends StatelessWidget {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -135,7 +135,7 @@ class Tomato extends StatelessWidget {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -153,7 +153,7 @@ class Tomato extends StatelessWidget {
                         MaterialButton(
                           height: 15.0,
                           minWidth: 350.0,
-                          color: Color(0xFF7A9BEE),
+                          color: Colors.green[600],
                           highlightColor: Colors.transparent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
