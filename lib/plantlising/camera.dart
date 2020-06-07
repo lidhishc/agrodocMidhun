@@ -3,10 +3,10 @@ import 'package:image_picker/image_picker.dart'; //for capturing image from phon
 import 'dart:io'; // for using file
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:async/async.dart';
+import 'package:async/async.dart' show DelegatingStream, Future;
 import 'dart:convert'; // for converting to json
 import 'package:connectivity/connectivity.dart';
-
+import 'package:project/responseConverter/pasrseJson.dart';
 class Camera extends StatefulWidget {
   Camera({this.plantName});
   final String plantName;
@@ -18,7 +18,7 @@ class _CameraState extends State<Camera> {
   File _image;
   String resp = '';
   var userName = 'lidhishc@flutter.com';
-
+  var jsonResponse;
   // for capturing image from camera
   Future getImageFromCam() async {
     var image = await ImagePicker.pickImage(source: ImageSource.camera);
@@ -149,7 +149,7 @@ class _CameraState extends State<Camera> {
     print(length);
     var uri;
     if (widget.plantName == "tomato") {
-      uri = Uri.parse('http://73103e7c0313.ngrok.io/predicts');
+      uri = Uri.parse('http://750340b068ce.ngrok.io/predicts');
     } else if (widget.plantName == "potato") {
       uri = Uri.parse('http://b9a7f529499d.ngrok.io/predicts');
     } else if (widget.plantName == "pepper") {
@@ -166,9 +166,8 @@ class _CameraState extends State<Camera> {
     print(multipartFile);
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
-    var resu = JsonDecoder().convert("$response");
-    this.resp = resu['solution'];
-    print(response.body.toString());
+    jsonResponse=response.body;
+    this.showJson();
   }
 
   // void uploadImageToServer(File imageFile) async {
@@ -190,4 +189,16 @@ class _CameraState extends State<Camera> {
   //   this.resp = response.body.toString();
   //   print(response.body);
   // }
+
+Future showJson() async{
+  final response = json.decode(this.resp);
+  JsonConvertor jsonConvertor = new JsonConvertor.fromJson(this.jsonResponse);
+  setState(() {
+    this.resp=jsonConvertor.diseaseName;
+  });
+  
+
+
+}
+
 }
